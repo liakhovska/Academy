@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f0baea2f97dc4601b597d9fcfe4a271a" Name="Diagram1">
+        <EntityTypeShape EntityType="AcademyModel.Deans" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyModel.Departments" Width="1.5" PointX="7.5" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyModel.Faculties" Width="1.5" PointX="5.25" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyModel.Groups" Width="1.5" PointX="9.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyModel.GroupsSecretaries" Width="1.5" PointX="12" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyModel.GroupsStudents" Width="1.5" PointX="12" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyModel.Secretaries" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyModel.Students" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyModel.Subjects" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AcademyModel.Teachers" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <AssociationConnector Association="AcademyModel.FK__Deans__TeacherId__06CD04F7" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyModel.FK__Faculties__DeanI__09A971A2" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyModel.FK__Departmen__Facul__07C12930" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyModel.FK__Departmen__Secre__08B54D69" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyModel.FK__Groups__Departme__0A9D95DB" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyModel.FK__GroupsSec__Group__0C85DE4D" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyModel.FK__GroupsStu__Group__0D7A0286" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyModel.FK__GroupsSec__Secre__0B91BA14" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyModel.FK__GroupsStu__Stude__0E6E26BF" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyModel.FK__Secretari__Teach__0F624AF8" ManuallyRouted="false" />
+        <AssociationConnector Association="AcademyModel.FK__Subjects__Teache__10566F31" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

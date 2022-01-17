@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище AcademyModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Deans">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeacherId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="FacultyId" Type="int" Nullable="false" />
+    <Property Name="SecretarId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Faculties">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="DeanId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Groups">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="Year" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupsSecretaries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Session_Begin" Type="date" Nullable="false" />
+    <Property Name="Session_End" Type="date" Nullable="false" />
+    <Property Name="SecretarId" Type="int" Nullable="false" />
+    <Property Name="GroupId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupsStudents">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StudentId" Type="int" Nullable="false" />
+    <Property Name="GroupId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Secretaries">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeacherId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Students">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subjects">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="TeacherId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Teachers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Surname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Patronymic" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Deans__TeacherId__06CD04F7">
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+    <End Role="Deans" Type="Self.Deans" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Deans">
+        <PropertyRef Name="TeacherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Departmen__Facul__07C12930">
+    <End Role="Faculties" Type="Self.Faculties" Multiplicity="1" />
+    <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Faculties">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Departments">
+        <PropertyRef Name="FacultyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Departmen__Secre__08B54D69">
+    <End Role="Secretaries" Type="Self.Secretaries" Multiplicity="1" />
+    <End Role="Departments" Type="Self.Departments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Secretaries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Departments">
+        <PropertyRef Name="SecretarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Faculties__DeanI__09A971A2">
+    <End Role="Deans" Type="Self.Deans" Multiplicity="1" />
+    <End Role="Faculties" Type="Self.Faculties" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Deans">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Faculties">
+        <PropertyRef Name="DeanId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Groups__Departme__0A9D95DB">
+    <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+    <End Role="Groups" Type="Self.Groups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Departments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Groups">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupsSec__Group__0C85DE4D">
+    <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+    <End Role="GroupsSecretaries" Type="Self.GroupsSecretaries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupsSecretaries">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupsSec__Secre__0B91BA14">
+    <End Role="Secretaries" Type="Self.Secretaries" Multiplicity="1" />
+    <End Role="GroupsSecretaries" Type="Self.GroupsSecretaries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Secretaries">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupsSecretaries">
+        <PropertyRef Name="SecretarId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupsStu__Group__0D7A0286">
+    <End Role="Groups" Type="Self.Groups" Multiplicity="1" />
+    <End Role="GroupsStudents" Type="Self.GroupsStudents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Groups">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupsStudents">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GroupsStu__Stude__0E6E26BF">
+    <End Role="Students" Type="Self.Students" Multiplicity="1" />
+    <End Role="GroupsStudents" Type="Self.GroupsStudents" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Students">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupsStudents">
+        <PropertyRef Name="StudentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Secretari__Teach__0F624AF8">
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+    <End Role="Secretaries" Type="Self.Secretaries" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Secretaries">
+        <PropertyRef Name="TeacherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Subjects__Teache__10566F31">
+    <End Role="Teachers" Type="Self.Teachers" Multiplicity="1" />
+    <End Role="Subjects" Type="Self.Subjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teachers">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Subjects">
+        <PropertyRef Name="TeacherId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище AcademyModelContainer">
+    <EntitySet Name="Deans" EntityType="Self.Deans" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Faculties" EntityType="Self.Faculties" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Groups" EntityType="Self.Groups" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupsSecretaries" EntityType="Self.GroupsSecretaries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupsStudents" EntityType="Self.GroupsStudents" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Secretaries" EntityType="Self.Secretaries" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Students" EntityType="Self.Students" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Subjects" EntityType="Self.Subjects" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teachers" EntityType="Self.Teachers" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Deans__TeacherId__06CD04F7" Association="Self.FK__Deans__TeacherId__06CD04F7">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Deans" EntitySet="Deans" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Departmen__Facul__07C12930" Association="Self.FK__Departmen__Facul__07C12930">
+      <End Role="Faculties" EntitySet="Faculties" />
+      <End Role="Departments" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Departmen__Secre__08B54D69" Association="Self.FK__Departmen__Secre__08B54D69">
+      <End Role="Secretaries" EntitySet="Secretaries" />
+      <End Role="Departments" EntitySet="Departments" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Faculties__DeanI__09A971A2" Association="Self.FK__Faculties__DeanI__09A971A2">
+      <End Role="Deans" EntitySet="Deans" />
+      <End Role="Faculties" EntitySet="Faculties" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Groups__Departme__0A9D95DB" Association="Self.FK__Groups__Departme__0A9D95DB">
+      <End Role="Departments" EntitySet="Departments" />
+      <End Role="Groups" EntitySet="Groups" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupsSec__Group__0C85DE4D" Association="Self.FK__GroupsSec__Group__0C85DE4D">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="GroupsSecretaries" EntitySet="GroupsSecretaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupsSec__Secre__0B91BA14" Association="Self.FK__GroupsSec__Secre__0B91BA14">
+      <End Role="Secretaries" EntitySet="Secretaries" />
+      <End Role="GroupsSecretaries" EntitySet="GroupsSecretaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupsStu__Group__0D7A0286" Association="Self.FK__GroupsStu__Group__0D7A0286">
+      <End Role="Groups" EntitySet="Groups" />
+      <End Role="GroupsStudents" EntitySet="GroupsStudents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GroupsStu__Stude__0E6E26BF" Association="Self.FK__GroupsStu__Stude__0E6E26BF">
+      <End Role="Students" EntitySet="Students" />
+      <End Role="GroupsStudents" EntitySet="GroupsStudents" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Secretari__Teach__0F624AF8" Association="Self.FK__Secretari__Teach__0F624AF8">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Secretaries" EntitySet="Secretaries" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Subjects__Teache__10566F31" Association="Self.FK__Subjects__Teache__10566F31">
+      <End Role="Teachers" EntitySet="Teachers" />
+      <End Role="Subjects" EntitySet="Subjects" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
